@@ -1,0 +1,578 @@
+--Activity1.java
+
+	
+public class Activity1 {
+    WebDriver driver;
+    
+    @BeforeMethod
+    public void beforeMethod() {
+        //Create a new instance of the Firefox driver
+        driver = new FirefoxDriver();
+        
+        //Open browser
+        driver.get("https://www.training-support.net");
+    }
+ 
+    @Test
+    public void exampleTestCase() {
+        // Check the title of the page
+        String title = driver.getTitle();
+            
+        //Print the title of the page
+        System.out.println("Page title is: " + title);
+            
+            //Assertion for page title
+        Assert.assertEquals("Training Support", title);
+                    
+        //Find the clickable link on the page and click it
+        driver.findElement(By.id("about-link")).click();
+                    
+        //Print title of new page
+        System.out.println("New page title is: " + driver.getTitle());
+        
+        Assert.assertEquals(driver.getTitle(), "About Training Support");
+    }
+ 
+    @AfterMethod
+    public void afterMethod() {
+        //Close the browser
+        driver.quit();
+    }
+ 
+}
+
+--Activity2.java
+
+	
+public class Activity2 {
+    WebDriver driver;
+    
+    @BeforeTest
+    public void beforeMethod() {
+        //Create a new instance of the Firefox driver
+        driver = new FirefoxDriver();
+            
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/target-practice");
+    }
+    
+    @Test
+    public void testCase1() {
+        //This test case will pass
+        String title = driver.getTitle();
+        System.out.println("Title is: " + title);
+        Assert.assertEquals(title, "Target Practice");
+    }
+    
+    @Test
+    public void testCase2() {
+        //This test case will Fail
+        WebElement blackButton = driver.findElement(By.cssSelector("button.black"));
+        Assert.assertTrue(blackButton.isDisplayed());
+        Assert.assertEquals(blackButton.getText(), "black");
+    }
+    
+    @Test(enabled = false)
+    public void testCase3() {
+        //This test will be skipped and not counted
+        String subHeading = driver.findElement(By.className("sub")).getText();
+        Assert.assertTrue(subHeading.contains("Practice"));
+    }
+    
+    @Test
+    public void testCase4() {
+        //This test will be skipped and will be be shown as skipped
+        throw new SkipException("Skipping test case");      
+    }
+ 
+    @AfterTest
+    public void afterMethod() {
+        //Close the browser
+        driver.close();
+    }
+ 
+}
+
+--Activity3.java
+
+	
+public class Activity3 {
+    WebDriver driver;
+ 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/login-form");
+    }
+ 
+    @Test
+    public void loginTest() {
+        //Find the username and password fields
+        WebElement username = driver.findElement(By.id("username"));
+        WebElement password = driver.findElement(By.id("password"));
+        
+        //Enter credentials
+        username.sendKeys("admin");
+        password.sendKeys("password");
+        
+        //Click login
+        driver.findElement(By.xpath("//button[text()='Log in']")).click();
+        
+        //Read login message
+        String loginMessage = driver.findElement(By.id("action-confirmation")).getText();
+        Assert.assertEquals("Welcome Back, admin", loginMessage);
+    }
+ 
+    @AfterClass
+    public void afterClass() {
+        //Close browser
+        driver.close();
+    }
+}
+
+
+--Activity4.java
+
+testng.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ExampleSuite" >
+    <test name="SuiteTests" >
+        <classes>
+            <class name="suiteExample.DemoOne"/>
+            <class name="suiteExample.DemoTwo"/>
+        </classes>
+    </test>
+</suite>
+
+
+--Activity5.java
+
+	
+public class Activity5 {
+    WebDriver driver;
+    //Include alwaysRun property on the @BeforeTest
+    //to make sure the page opens
+    @BeforeTest(alwaysRun = true)
+    public void beforeMethod() {
+        //Create a new instance of the Firefox driver
+        driver = new FirefoxDriver();
+            
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/target-practice");
+    }
+    
+    @Test (groups = {"HeaderTests", "ButtonTests"})
+    public void pageTitleTest() {
+        String title = driver.getTitle();
+        System.out.println("Title is: " + title);
+        Assert.assertEquals(title, "Target Practice");
+    }
+    
+    @Test (dependsOnMethods = {"pageTitleTest"}, groups = {"HeaderTests"})
+    public void HeaderTest1() {
+        WebElement header3 = driver.findElement(By.cssSelector("h3#third-header"));
+        Assert.assertEquals(header3.getText(), "Third header");
+    }
+    
+    @Test (dependsOnMethods = {"pageTitleTest"}, groups = {"HeaderTests"})
+    public void HeaderTest2() {
+        WebElement header5 = driver.findElement(By.cssSelector("h3#third-header"));
+        Assert.assertEquals(header5.getCssValue("color"), "rgb(251, 189, 8)");
+    }
+    
+    @Test (dependsOnMethods = {"pageTitleTest"}, groups = {"ButtonTests"})
+    public void ButtonTest1() {
+        WebElement button1 = driver.findElement(By.cssSelector("button.olive"));
+        Assert.assertEquals(button1.getText(), "Olive");
+    }
+    
+    @Test (dependsOnMethods = {"pageTitleTest"}, groups = {"ButtonTests"})
+    public void ButtonTest2() {
+        WebElement button2 = driver.findElement(By.cssSelector("button.brown"));
+        Assert.assertEquals(button2.getCssValue("color"), "rgb(255, 255, 255)");
+    }
+ 
+    //Include alwaysRun property on the @AfterTest
+    //to make sure the page closes
+    @AfterTest(alwaysRun = true)
+    public void afterMethod() {
+        //Close the browser
+        driver.close();
+    }
+ 
+}
+
+testng.xml
+
+	
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite parallel="false" name="Suite">
+    <test name="Test">
+    <groups>
+        <run>
+            <include name="HeaderTests" />
+            <!--<exclude name="HeaderTests" />-->
+        </run>
+    </groups>
+        <classes>
+            <class name="session9.GroupsDemo"/>
+            <class name="session9.DemoOne"/>
+            <class name="session9.DemoTwo"/> 
+            <class name="session9.Activity5"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+--Activity6.java
+
+testng.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite parallel="false" name="Suite">
+    <test name="Test">
+        <parameter name="username" value="admin"/>
+        <parameter name="password" value="password"/>
+        <classes>
+            <class name="session9.Activity6"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+	
+public class Activity6 {
+    WebDriver driver;
+    WebDriverWait wait;
+ 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 10);
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/login-form");
+    }
+    
+    @Test
+    @Parameters({"username", "password"})
+    public void loginTestCase(String username, String password) {
+        //Find username and pasword fields
+        WebElement usernameField = driver.findElement(By.id("username"));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        
+        //Enter values
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        
+        //Click Log in
+        driver.findElement(By.cssSelector("button[type='submit']")).click();
+        
+        //Assert Message
+        String loginMessage = driver.findElement(By.id("action-confirmation")).getText();
+        Assert.assertEquals(loginMessage, "Welcome Back, admin");
+    }
+ 
+    @AfterClass
+    public void afterClass() {
+        //Close browser
+        driver.close();
+    }
+ 
+}
+
+--Activity7
+
+testng.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite parallel="false" name="Suite">
+    <test name="Test">
+        <classes>
+            <class name="session9.Activity7"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+	
+public class Activity7 {
+    WebDriver driver;
+    WebDriverWait wait;
+ 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 10);
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/login-form");
+    }
+    
+    @DataProvider(name = "Authentication")
+    public static Object[][] credentials() {
+        return new Object[][] { { "admin", "password" }};
+    }
+    
+    @Test (dataProvider = "Authentication")
+    public void loginTestCase(String username, String password) {
+        //Find username and pasword fields
+        WebElement usernameField = driver.findElement(By.id("username"));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        
+        //Enter values
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        
+        //Click Log in
+        driver.findElement(By.cssSelector("button[type='submit']")).click();
+        
+        //Assert Message
+        String loginMessage = driver.findElement(By.id("action-confirmation")).getText();
+        Assert.assertEquals(loginMessage, "Welcome Back, admin");
+    }
+ 
+    @AfterClass
+    public void afterClass() {
+        //Close browser
+        driver.close();
+    }
+ 
+}
+
+--Activity8
+
+testng.xml
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite" parallel="classes">
+    <test name="Tests">
+        <classes>
+            <class name="session9.Activity1"/>
+            <class name="session9.Activity2"/>
+            <class name="session9.Activity3"/>
+            <class name="session9.Activity4"/>
+            <class name="session9.Activity5"/>
+            <class name="session9.Activity6"/>
+        </classes>
+    </test>
+</suite>
+
+--Activity9
+
+testng.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite">
+	<test name="Test">
+		<classes>
+			<class name="session9.Activity9"/>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+
+	
+public class Activity9 {
+    WebDriver driver;
+ 
+    @BeforeClass
+    public void setUp() {
+        //Create a new instance of the Firefox driver
+        driver = new FirefoxDriver();
+ 
+        Reporter.log("Starting Test |");
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/javascript-alerts");
+        Reporter.log("Opened Browser |");
+ 
+        //Print title of page
+        Reporter.log("Page title is " + driver.getTitle() + " |");
+    }
+    
+    @BeforeMethod
+    public void beforeMethod() {
+        Reporter.log("Test Case Setup started |");
+        driver.switchTo().defaultContent();
+    }
+ 
+    @Test(priority = 0)
+    public void simpleAlertTestCase() {
+        Reporter.log("simpleAlertTestCase() started |");
+        //Click the button to open a simple alert
+        driver.findElement(By.id("simple")).click();
+        Reporter.log("Simple Alert opened |");
+ 
+        //Switch to alert window
+        Alert simpleAlert = driver.switchTo().alert();
+        Reporter.log("Switched foucs to alert |");
+ 
+        //Get text in the alert box and print it
+        String alertText = simpleAlert.getText();
+        Reporter.log("Alert text is: " + alertText + " |");
+        
+        //Assertion
+        Assert.assertEquals("This is a JavaScript Alert!", alertText);
+ 
+        simpleAlert.accept();
+        Reporter.log("Alert closed");
+ 
+        Reporter.log("Test case ended |");
+    }
+ 
+    @Test(priority = 1)
+    public void confirmAlertTestCase() {
+        Reporter.log("confirmAlertTestCase() started |");
+        //Click the button to open a simple alert
+        driver.findElement(By.id("confirm")).click();
+        Reporter.log("Confirm Alert opened |");
+ 
+        //Switch to alert window
+        Alert confirmAlert = driver.switchTo().alert();
+        Reporter.log("Switched foucs to alert |");
+ 
+        //Get text in the alert box and print it
+        String alertText = confirmAlert.getText();
+        Reporter.log("Alert text is: " + alertText + " |");
+        
+        //Assertion
+        Assert.assertEquals("This is a JavaScript Confirmation!", alertText);
+ 
+        confirmAlert.accept();
+        Reporter.log("Alert closed |");
+ 
+        Reporter.log("Test case ended |");
+    }
+ 
+    @Test(priority = 2)
+    public void promptAlertTestCase() {
+        Reporter.log("promptAlertTestCase() started |");
+        //Click the button to open a simple alert
+        driver.findElement(By.id("prompt")).click();
+        Reporter.log("Prompt Alert opened |");
+ 
+        //Switch to alert window
+        Alert promptAlert = driver.switchTo().alert();
+        Reporter.log("Switched foucs to alert |");
+ 
+        //Get text in the alert box and print it
+        String alertText = promptAlert.getText();
+        Reporter.log("Alert text is: " + alertText + " |");
+ 
+        promptAlert.sendKeys("Awesome!");
+        Reporter.log("Text entered in prompt alert |");
+        
+        //Assertion
+        Assert.assertEquals("This is a JavaScript Prompt!", alertText);
+ 
+        promptAlert.accept();
+        Reporter.log("Alert closed |");
+ 
+        Reporter.log("Test case ended |");
+    }
+ 
+    @AfterClass
+    public void tearDown() {
+        Reporter.log("Ending Test |");
+        //Close the driver
+        driver.close();
+    }
+}
+
+--Activity10
+Activity10.java
+
+	
+public class Activity10 {
+    WebDriver driver;
+    Actions builder;
+ 
+    @BeforeClass
+    public void beforeClass() {
+        driver = new FirefoxDriver();
+        builder = new Actions(driver);
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/sliders");
+    }
+ 
+    @Test
+    public void sliderToMiddleTest() {
+        //Find slider
+        WebElement slider = driver.findElement(By.id("slider"));
+        //Clicking on the slider element moves it to the middle
+        slider.click();
+        
+        String volumeLevel = driver.findElement(By.cssSelector("span#value")).getText();
+        Reporter.log("Mid value: " + volumeLevel);
+        
+        Assert.assertEquals(volumeLevel, "50");
+    }
+    
+    @Test
+    public void sliderToMaxTest() {
+        //Find slider
+        WebElement slider = driver.findElement(By.id("slider"));
+        //Drag the slider
+        builder.clickAndHold(slider).moveByOffset(75, 0).release().build().perform();
+        
+        String volumeLevel = driver.findElement(By.cssSelector("span#value")).getText();
+        Reporter.log("Max value: " + volumeLevel);
+        
+        Assert.assertEquals(volumeLevel, "100");
+    }
+    
+    @Test
+    public void sliderToMinTest() {
+        //Find slider
+        WebElement slider = driver.findElement(By.id("slider"));
+        //Drag the slider
+        builder.clickAndHold(slider).moveByOffset(-75, 0).release().build().perform();
+        
+        String volumeLevel = driver.findElement(By.cssSelector("span#value")).getText();
+        Reporter.log("Min value: " + volumeLevel);
+        
+        Assert.assertEquals(volumeLevel, "0");
+    }
+    
+    @Test
+    public void sliderTo30Test() {
+        //Find slider
+        WebElement slider = driver.findElement(By.id("slider"));
+        //Drag the slider
+        builder.clickAndHold(slider).moveByOffset(-30, 0).release().build().perform();
+        
+        String volumeLevel = driver.findElement(By.cssSelector("span#value")).getText();
+        Reporter.log("Min value: " + volumeLevel);
+        
+        Assert.assertEquals(volumeLevel, "30");
+    }
+    
+    @Test
+    public void sliderTo80Test() {
+        //Find slider
+        WebElement slider = driver.findElement(By.id("slider"));
+        //Drag the slider
+        builder.clickAndHold(slider).moveByOffset(45, 0).release().build().perform();
+        
+        String volumeLevel = driver.findElement(By.cssSelector("span#value")).getText();
+        Reporter.log("Min value: " + volumeLevel);
+        
+        Assert.assertEquals(volumeLevel, "80");
+    }
+ 
+    @AfterClass
+    public void afterClass() {
+        //Close browser
+        driver.close();
+    }
+}
+
+
+
+
+
