@@ -1,0 +1,1288 @@
+--Activity1
+Activity_1.java
+public class Activity_1 {
+ 
+    public static void main(String[] args) {
+    
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+		
+        // Open the browser
+        driver.get("https://www.training-support.net");
+		
+        // Close the browser
+        driver.close();
+    }
+ 
+}
+
+--Activity2 
+Activity_2.java
+	
+public class Activity_2  {
+    public static void main(String[] args) {
+ 
+        //Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+        
+        //And now use this to visit the website
+        driver.get("https://www.training-support.net");
+        
+        //Check the title of the page
+        String title = driver.getTitle();
+        //Print the title of the page
+        System.out.println("Page title is: " + title);
+        
+        //Find the About Us link using id()
+        WebElement idLocator = driver.findElement(By.id("about-link"));
+        System.out.println("Text in element: " + idLocator.getText());
+        
+        //Find the About Us link using className()
+        WebElement classNameLocator = driver.findElement(By.className("green"));
+        System.out.println("Text in element: " + classNameLocator.getText());
+        
+        //Find the About Us link using cssSelector()
+        WebElement cssLocator = driver.findElement(By.cssSelector(".green"));
+        System.out.println("Text in element: " + cssLocator.getText());
+        
+        //Find the About Us link using linkText()
+        WebElement linkTextLocator = driver.findElement(By.linkText("About Us"));
+        System.out.println("Text in element: " + linkTextLocator.getText());
+        
+        //Close the browser
+        driver.close();
+    }
+}
+
+--Activity3
+Activity_3.java
+public class Activity_3 {
+    public static void main(String[] args) {
+ 
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+    
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/simple-form");
+        
+        //Find the page title and print it
+        String pageTitle = driver.getTitle();
+        System.out.println(pageTitle);
+        
+        //Find the input fields
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        //Enter text
+        firstName.sendKeys("Saahil");
+        lastName.sendKeys("Sharma");
+        
+        //Enter the email
+        driver.findElement(By.id("email")).sendKeys("test@example.com");
+        
+        //Enter the contact number
+        driver.findElement(By.id("number")).sendKeys("1234567890");
+        
+        //Click Submit
+        driver.findElement(By.cssSelector(".ui.green.button")).click();
+    
+        //Close the browser
+        driver.close();
+    }
+}
+
+--Activity4-1
+Activity4_1.java
+	
+public class Activity4_1  {
+ 
+    public static void main(String[] args) {
+ 
+        //Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //And now use this to visit the website
+        driver.get("https://www.training-support.net");
+ 
+        //Check the title of the page
+        String title = driver.getTitle();
+        //Print the title of the page
+        System.out.println("Page title is: " + title);
+ 
+        //Find the "Get Started!" link and click it
+        driver.findElement(By.xpath("/html/body/div/div/div/a")).click();
+ 
+        //Print title of new page
+        System.out.println("Heading is: " + driver.getTitle());
+ 
+        //Close the browser
+        driver.close();
+ 
+    }
+ 
+}
+
+Activity4_2.java
+	
+public class Activity4_2 {
+    public static void main(String[] args) {
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/simple-form");
+ 
+        //Find the page title and print it
+        String pageTitle = driver.getTitle();
+        System.out.println(pageTitle);
+ 
+        //Find the input fields and enter text
+        WebElement firstName = driver.findElement(By.xpath("//input[@id = 'firstName']"));
+        WebElement lastName = driver.findElement(By.xpath("//input[@id = 'lastName']"));
+ 
+        firstName.sendKeys("Saahil");
+        lastName.sendKeys("Sharma");
+ 
+        //Enter the email
+        driver.findElement(By.xpath("//input[@id = 'email']")).sendKeys("test@example.com");
+ 
+        //Enter the contact number
+        driver.findElement(By.xpath("//input[@id = 'number']")).sendKeys("1234567890");
+ 
+        //Enter Message
+        driver.findElement(By.xpath("//textarea")).sendKeys("This is my message");
+ 
+        //Click Submit
+        driver.findElement(By.xpath("//input[contains(@class, 'green')]")).click();
+    }
+}
+
+Activity4_3.java
+public class Activity4_3 {
+ 
+    public static void main(String[] args) {
+ 
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/target-practice");
+ 
+        //Find the page title and print it
+        String pageTitle = driver.getTitle();
+        System.out.println(pageTitle);
+ 
+        //Find the third header
+        String thirdHeader = driver.findElement(By.xpath("//h3[@id='third-header']")).getText();
+        System.out.println("Third header text is: " + thirdHeader);
+ 
+        //Find the fifth header and get it's colour
+        String fifthHeaderColour = driver.findElement(By.xpath("//h5")).getCssValue("color");
+        System.out.println("Fith header's colour is: " + fifthHeaderColour);
+ 
+        //Find the violet button and print it's classes
+        String violetButtonClasses = driver.findElement(By.xpath("//button[contains(text(), 'Violet')]")).getAttribute("class");
+        System.out.println("Violet button's classes are: " + violetButtonClasses);
+ 
+        //Find the grey button with Absolute XPath
+        String greyButton = driver.findElement(By.xpath("/html/body/div/div[2]/div/div[2]/div/div/div/div[2]/div[3]/button[2]")).getText();
+        System.out.println("The grey button's text is: " + greyButton);
+ 
+        //Close the browser
+        driver.close();
+ 
+    }
+ 
+}
+
+--Activity5-1
+Activity5_1.java
+	
+public class Activity5_1 {
+ 
+    public static void main(String[] args) {
+ 
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/dynamic-controls");
+ 
+        //Find the checkbox
+        WebElement checkboxInput = driver.findElement(By.xpath("//input[@type='checkbox']"));
+        System.out.println("The checkbox Input is displayed: " + checkboxInput.isDisplayed());
+ 
+        driver.findElement(By.id("toggleCheckbox")).click();
+ 
+        System.out.println("The checkbox Input is displayed: " + checkboxInput.isDisplayed());
+ 
+        //Close the browser
+        driver.close();
+ 
+    }
+ 
+}
+--Activity5-2
+Activity5_2.java
+	
+public class Activity5_2 {
+ 
+    public static void main(String[] args) {
+ 
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/dynamic-controls");
+ 
+        //Find the checkbox
+        WebElement checkboxInput = driver.findElement(By.xpath("//input[@type='checkbox']"));
+        System.out.println("The checkbox is selected: " + checkboxInput.isSelected());
+ 
+        //Select the checkbox
+        checkboxInput.click();
+ 
+        //Print status
+        System.out.println("The checkbox is selected: " + checkboxInput.isSelected());
+ 
+        //Close the browser
+        driver.close();
+ 
+    }
+ 
+}
+
+--Activity5-3
+Activity5_3.java
+	
+public class Activity5_3 {
+ 
+    public static void main(String[] args) {
+ 
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open the browser
+        driver.get("https://training-support.net/selenium/dynamic-controls");
+ 
+        //Find the checkbox
+        WebElement textInput = driver.findElement(By.xpath("//input[@type='text']"));
+ 
+        //Print status
+        System.out.println("The checkbox is selected: " + textInput.isEnabled());
+ 
+        driver.findElement(By.id("toggleInput")).click();
+ 
+        //Print status
+        System.out.println("The checkbox is selected: " + textInput.isEnabled());
+ 
+        //Close the browser
+        driver.close();
+ 
+    }
+ 
+}
+
+--Activity6-1
+Activity6_1.java
+
+	
+public class Activity6_1 {
+ 
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
+        //Open browser
+        driver.get("https://training-support.net/selenium/dynamic-controls");
+ 
+        //Find checkbox and toggle button
+        WebElement checkbox = driver.findElement(By.xpath("//div[@id='dynamicCheckbox']/input"));
+        WebElement toggleCheckboxButton = driver.findElement(By.xpath("//button[@id='toggleCheckbox']"));
+        
+        //Click the toggle button
+        toggleCheckboxButton.click();
+        
+        //Wait for checkbox to disappear
+        wait.until(ExpectedConditions.invisibilityOf(checkbox));
+        
+        //Click toggle button again
+        toggleCheckboxButton.click();
+        
+        //Wait for checkbox to appear
+        wait.until(ExpectedConditions.visibilityOf(checkbox));
+        checkbox.click();
+        
+        //Close browser
+        driver.close();
+    }
+ 
+}
+
+--Activity6-2
+Activity6_2.java
+
+	
+public class Activity6_2 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+ 
+        //Open browser
+        driver.get("https://training-support.net/selenium/ajax");
+ 
+        //Find and click the button
+        driver.findElement(By.xpath("//button[contains(@class, 'violet')]")).click();
+ 
+        //Wait for text to load
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("ajax-content"), "HELLO!"));
+ 
+        //getText() and print it
+        String ajaxText = driver.findElement(By.id("ajax-content")).getText();
+        System.out.println(ajaxText);
+        
+        //Wait for late text
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("ajax-content"), "I'm late!"));
+        
+        //Get late text and print it
+        String lateText = driver.findElement(By.id("ajax-content")).getText();
+        System.out.println(lateText);
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity7-1
+Activity7_1.java
+
+public class Activity7_1 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        
+        //Open browser
+        driver.get("https://training-support.net/selenium/dynamic-attributes");
+        
+        //Find username and password fields
+        WebElement userName = driver.findElement(By.xpath("//input[starts-with(@class, 'username')]"));
+        WebElement password = driver.findElement(By.xpath("//input[contains(@class, 'password')]"));
+        //Type credentials
+        userName.sendKeys("admin");
+        password.sendKeys("password");
+        //Click Log in
+        driver.findElement(By.xpath("//button[contains(text(), 'Log in')]")).click();
+        
+        //Print login message
+        String loginMessage = driver.findElement(By.id("action-confirmation")).getText();
+        System.out.println("Login message: " + loginMessage);
+        
+        //Close browser
+        driver.close();
+ 
+    }
+}
+
+--Activity7-2
+Activity7_2.java
+
+public class Activity7_2 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/dynamic-attributes");
+        
+        //Find username and password fields
+        WebElement userName = driver.findElement(By.xpath("//input[contains(@class, '-username')]"));
+        WebElement password = driver.findElement(By.xpath("//input[contains(@class, '-password')]"));
+        WebElement confirmPassword = driver.findElement(By.xpath("//label[text() = 'Confirm Password']/following::input"));
+        WebElement email = driver.findElement(By.xpath("//label[contains(text(), 'mail')]/following-sibling::input"));
+        
+        //Type credentials
+        userName.sendKeys("NewUser");
+        password.sendKeys("Password");
+        confirmPassword.sendKeys("Password");
+        email.sendKeys("real_email@xyz.com");
+        //Click Sign Up
+        driver.findElement(By.xpath("//button[contains(text(), 'Sign Up')]")).click();
+        
+        //Print login message
+        String loginMessage = driver.findElement(By.id("action-confirmation")).getText();
+        System.out.println("Login message: " + loginMessage);
+        
+        //Close browser
+        driver.close();
+ 
+    }
+}
+
+--Activity8-1
+Activity8_1.java
+
+	
+public class Activity8_1 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://training-support.net/selenium/tables");
+ 
+        //Get columns
+        List<WebElement> cols = driver.findElements(By.xpath("//table[contains(@class, 'striped')]/tbody/tr[1]/td"));
+        //Get rows
+        List<WebElement> rows = driver.findElements(By.xpath("//table[contains(@class, 'striped')]/tbody/tr"));
+ 
+        //Number of columns
+        System.out.println("Number of columns are: " + cols.size());
+        //Number of rows
+        System.out.println("Number of rows are: " + rows.size());
+ 
+        //Get third row values and print them
+        List<WebElement> thirdRow = driver.findElements(By.xpath("//table[contains(@class, 'striped')]/tbody/tr[3]/td"));
+        for(WebElement cellValue : thirdRow) {
+            System.out.println("Cell Value: " + cellValue.getText());
+        }
+ 
+        //Cell value of second row, second column
+        WebElement cellValue2_2 = driver.findElement(By.xpath("//table[contains(@class, 'striped')]/tbody/tr[2]/td[2]"));
+        System.out.println("Second row, second column value: " + cellValue2_2.getText());
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity8-2
+Activity8_2.java
+
+public class Activity8_2 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://training-support.net/selenium/tables");
+ 
+        //Get columns
+        List<WebElement> cols = driver.findElements(By.xpath("//table[@id='sortableTable']/thead/tr/th"));
+        //Get rows
+        List<WebElement> rows = driver.findElements(By.xpath("//table[@id='sortableTable']/tbody/tr"));
+ 
+        //Number of columns
+        System.out.println("Number of columns are: " + cols.size());
+        //Number of rows
+        System.out.println("Number of rows are: " + rows.size());
+ 
+        //Cell value of second row, second column
+        WebElement cellValueBefore = driver.findElement(By.xpath("//table[@id='sortableTable']/tbody/tr[2]/td[2]"));
+        System.out.println("Second row, second column value(Before sorting): " + cellValueBefore.getText());
+ 
+        //Sort the table
+        driver.findElement(By.xpath("//table[@id='sortableTable']/thead/tr/th[2]")).click();
+ 
+        //Print the value again
+        WebElement cellValueAfter = driver.findElement(By.xpath("//table[@id='sortableTable']/tbody/tr[2]/td[2]"));
+        System.out.println("Second row, second column value(After sorting): " + cellValueAfter.getText());
+ 
+        //Print footer cell value
+        WebElement footer = driver.findElement(By.xpath("//table[@id='sortableTable']/tfoot/tr"));
+        System.out.println("Table footer values: " + footer.getText());
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity9-1
+Activity9_1.java
+
+	
+public class Activity9_1 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://training-support.net/selenium/selects");
+ 
+        //Chosen option
+        WebElement chosen = driver.findElement(By.id("single-value"));
+ 
+        //Find dropdown
+        Select dropdown = new Select(driver.findElement(By.id("single-select")));
+ 
+        //Select second option by visible text
+        dropdown.selectByVisibleText("Option 2");
+        System.out.println(chosen.getText());
+ 
+        //Select third option by index
+        dropdown.selectByIndex(3);
+        System.out.println(chosen.getText());
+ 
+        //Select fourth option by value
+        dropdown.selectByValue("4");
+        System.out.println(chosen.getText());
+        
+        //Get all options
+        List<WebElement> options = dropdown.getOptions();
+        //Print them
+        for(WebElement option : options) {
+            System.out.println("Option: " + option.getText());
+        }
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity9-2
+Activity9_2.java
+
+	
+public class Activity9_2 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://training-support.net/selenium/selects");
+ 
+        //Chosen option
+        WebElement chosen = driver.findElement(By.id("multi-value"));
+        
+        //Find multiList
+        Select multiList = new Select(driver.findElement(By.id("multi-select")));
+        
+        if(multiList.isMultiple()) {
+        
+            //Select 'JavaScript' by Visible text
+            multiList.selectByVisibleText("Javascript");
+            System.out.println(chosen.getText());
+    
+            //Select 'NodeJS' by value
+            multiList.selectByValue("node");
+            System.out.println(chosen.getText());
+            
+            //Select 4,5, and 6 options by index
+            for(int i=4; i<=6; i++) {
+                multiList.selectByIndex(i);
+            }
+            System.out.println(chosen.getText());
+    
+            //Deselect 'NodeJS' by value
+            multiList.deselectByValue("node");
+            System.out.println(chosen.getText());
+            
+            //Deselect 7th opttion by index
+            multiList.deselectByIndex(7);
+            System.out.println(chosen.getText());
+            
+            //Get all selected options
+            List<WebElement> selectedOptions = multiList.getAllSelectedOptions();
+            //Print all selected options
+            for(WebElement selectedOption : selectedOptions) {
+                System.out.println("Selected option: " + selectedOption.getText());
+            }
+            
+            //Deselect all options
+            multiList.deselectAll();
+            System.out.println(chosen.getText());
+        }        
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity10-1
+Activity10_1.java
+
+	
+public class Activity10_1 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        Actions actions = new Actions(driver);
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/input-events");
+        //Find the cude
+        WebElement cube = driver.findElement(By.id("wrapD3Cube"));
+ 
+        //Left click
+        actions.click(cube);
+        WebElement cubeVal = driver.findElement(By.className("active"));
+        System.out.println("Left Click: " + cubeVal.getText());
+ 
+        //Double click
+        actions.doubleClick(cube).perform();
+        cubeVal = driver.findElement(By.className("active"));
+        System.out.println("Double Click: " + cubeVal.getText());
+        
+        //Right click        
+        actions.contextClick(cube).perform();
+        cubeVal = driver.findElement(By.className("active"));
+        System.out.println("Right Click: " + cubeVal.getText());
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity10-2
+Activity10_2.java
+
+public class Activity10_2 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        Actions actions = new Actions(driver);
+        String pressedKeyText;
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/input-events");
+        WebElement pressedKey = driver.findElement(By.id("keyPressed"));
+        
+        //Create action sequence for initials
+        Action actionSequence1 = actions.sendKeys("S").build();
+        actionSequence1.perform();
+        pressedKeyText = pressedKey.getText();
+        System.out.println("Pressed key is: " + pressedKeyText);
+        
+        
+        //Create action sequence for Spacebar
+        Action actionSequence2 = actions
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a")
+                .sendKeys("c")
+                .keyUp(Keys.CONTROL)
+                .build();
+        actionSequence2.perform();
+        pressedKeyText = pressedKey.getText();
+        System.out.println("Pressed key is: " + pressedKeyText);
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity10-3
+Activity10_3.java
+
+public class Activity10_3 {
+    public static void main(String[] args) throws InterruptedException {
+    
+    	// Declare new WebDriver
+        WebDriver driver = new FirefoxDriver();
+        
+        // Declare new WebDriverWait
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        
+        // Navigate to the activity page
+        driver.get("https://training-support.net/selenium/drag-drop");
+        
+        // Wait for the ball to load
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("draggable")));
+        
+        // Save the different elements in variables
+        WebElement ball = driver.findElement(By.id("draggable"));
+        WebElement drop1 = driver.findElement(By.id("droppable"));
+        WebElement drop2 = driver.findElement(By.id("dropzone2"));
+        
+        // Compile a custom action for Drag/Drop and perform it.
+        Actions dragAndDrop = new Actions(driver);
+        dragAndDrop.dragAndDrop(ball, drop1).build().perform();
+        
+        // Wait for the Dropzone's color to change 
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(drop1, "background-color"));
+        System.out.println("ENTERED DROPZONE 1");
+        
+        // Repeat for the second dropzone
+        dragAndDrop.dragAndDrop(ball, drop2).build().perform();
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(drop2, "background-color"));
+        System.out.println("ENTERED DROPZONE 2");
+        
+        // Close the browser
+        driver.close();
+    }
+}
+
+--Activity11-1
+Activity11_1.java
+
+public class Activity11_1 {
+    public static void main(String[] args) throws InterruptedException {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/javascript-alerts");
+ 
+        //Click the button to open a simple alert
+        driver.findElement(By.cssSelector("button#simple")).click();
+ 
+        //Switch to alert window
+        Alert simpleAlert = driver.switchTo().alert();
+ 
+        //Get text in the alert box and print it
+        String alertText = simpleAlert.getText();
+        System.out.println("Alert text is: " + alertText);
+ 
+        //Close the alert box
+        simpleAlert.accept();
+ 
+        //Close the Browser
+        driver.close();
+    }
+}
+
+--Activity11-2
+Activity11_2.java
+
+public class Activity11_2 {
+    public static void main(String[] args) throws InterruptedException {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/javascript-alerts");
+ 
+        //Click the button to open a simple alert
+        driver.findElement(By.cssSelector("button#confirm")).click();
+ 
+        //Switch to alert window
+        Alert confirmAlert = driver.switchTo().alert();
+ 
+        //Get text in the alert box and print it
+        String alertText = confirmAlert.getText();
+        System.out.println("Alert text is: " + alertText);
+ 
+        //Close the alert with OK
+        confirmAlert.accept();
+ 
+        //Close the browser with Cancel
+        //confirmAlert.dismiss();
+ 
+        //Close the Browser
+        driver.close();
+    }
+}
+
+--Activity11-3
+Activity11_3.java
+
+	
+public class Activity11_3 {
+ 
+    public static void main(String[] args) throws InterruptedException {
+        WebDriver driver = new FirefoxDriver();
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/javascript-alerts");
+ 
+        //Print title of page and heading on page
+        System.out.println("Page title is: " + driver.getTitle());
+ 
+        //Click the button to open a prompt
+        driver.findElement(By.cssSelector("button#prompt")).click();
+ 
+        //Switch to prompt window
+        Alert promptAlert = driver.switchTo().alert();
+ 
+        //Get text in the prompt box and print it
+        String alertText = promptAlert.getText();
+        System.out.println("Alert text is: " + alertText);
+ 
+        //Type "Awesome!" into the prompt
+        promptAlert.sendKeys("Awesome!");
+ 
+        //Close the prompt
+        promptAlert.accept();
+ 
+        //Close the Browser
+        driver.close();
+    }
+}
+
+--Activity11-4
+Activity11_4.java
+
+public class Activity11_4 {
+    public static void main(String[] args) {
+        // Create a new instance of the Firefox driver
+        WebDriver driver = new FirefoxDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+ 
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/tab-opener");
+ 
+        //Print title of page and heading on page
+        System.out.println("Page title is: " + driver.getTitle());
+ 
+        //Get parent window handle
+        String parentWindow = driver.getWindowHandle();
+        System.out.println("Parent Window: " + parentWindow);
+ 
+        //Find link to open new tab and click it
+        driver.findElement(By.linkText("Click Me!")).click();
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+ 
+        //Get Window handles
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        System.out.println("All window handles: " + allWindowHandles);
+ 
+        //Loop through each handle
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+        }
+ 
+        //Print the handle of the current window
+        System.out.println("Current window handle: " + driver.getWindowHandle());
+ 
+        //Wait for page to load completely
+        wait.until(ExpectedConditions.titleIs("Newtab"));
+ 
+        //Print New Tab Title
+        System.out.println("New Tab Title is: " + driver.getTitle());
+ 
+        //Get heading on new page
+        String newTabText = driver.findElement(By.cssSelector("div.content")).getText();
+        System.out.println("New tab heading is: " + newTabText);
+ 
+        //Open Another Tab
+        driver.findElement(By.linkText("Open Another One!")).click();
+        wait.until(ExpectedConditions.numberOfWindowsToBe(3));
+ 
+        //Make sure the new tab's handle is part of the handles set
+        allWindowHandles = driver.getWindowHandles();
+        System.out.println("All window handles: " + allWindowHandles);
+ 
+        //Loop through the handles set till we get to the newest handle
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+        }
+ 
+        //Print the handle of the current window
+        System.out.println("New tab handle: " + driver.getWindowHandle());
+ 
+        //Wait for the newest tab to load completely
+        wait.until(ExpectedConditions.titleIs("Newtab2"));
+ 
+        //Print New Tab Title
+        System.out.println("New Tab Title is: " + driver.getTitle());
+ 
+        //Get heading on new page
+        newTabText = driver.findElement(By.cssSelector("div.content")).getText();
+        System.out.println("New tab heading is: " + newTabText);
+ 
+        //Close the browser
+        driver.quit();
+    }
+}
+
+--Activity12-1
+Activity12_1.java
+
+public class Activity12_1 {
+    public static void main(String[] args) {
+    
+        //Create WebDriver instance
+        WebDriver driver = new FirefoxDriver();
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/iframes");
+ 
+        //Print title of the page
+        System.out.println("Title of the page is: " + driver.getTitle());
+ 
+        //Switch to first iFrame on the page
+        driver.switchTo().frame(0);
+ 
+        //Perform operation on the first frame
+        WebElement frameHeading1 = driver.findElement(By.cssSelector("div.content"));
+        System.out.println(frameHeading1.getText());
+ 
+        //Click button in iFrame 1
+        WebElement button1 = driver.findElement(By.cssSelector("button"));
+        System.out.println(button1.getText());
+        System.out.println(button1.getCssValue("background-color"));
+        button1.click();
+ 
+        //Print New Button Info
+        System.out.println(button1.getText());
+        System.out.println(button1.getCssValue("background-color"));
+ 
+        //Switch back to parent page
+        driver.switchTo().defaultContent();
+ 
+        //Switch to second iFrame on the page
+        driver.switchTo().frame(1);
+ 
+        //Perform operation on the second frame
+        WebElement frameHeading2 = driver.findElement(By.cssSelector("div.content"));
+        System.out.println(frameHeading2.getText());
+ 
+        //Click button in iFrame 2
+        WebElement button2 = driver.findElement(By.cssSelector("button"));
+        System.out.println(button2.getText());
+        System.out.println(button2.getCssValue("background-color"));
+        button2.click();
+ 
+        //Print New Button Info
+        System.out.println(button2.getText());
+        System.out.println(button2.getCssValue("background-color"));
+ 
+        //Switch back to parent page
+        driver.switchTo().defaultContent();
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+--Activity12-2
+Activity12_2.java
+
+	
+public class Activity12_2 {
+    public static void main(String[] args) {
+    
+        //Create WebDriver instance
+        WebDriver driver = new FirefoxDriver();
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/nested-iframes");
+ 
+        //Print title of the page
+        System.out.println("Title of the page is: " + driver.getTitle());
+ 
+        //Switch to first iFrame on the page
+        driver.switchTo().frame(0);
+ 
+        //Switch to first iFrame in that frame
+        driver.switchTo().frame(0);
+ 
+        //Get heading text in iFrame
+        WebElement frameHeading1 = driver.findElement(By.cssSelector("div.content"));
+        System.out.println(frameHeading1.getText());
+ 
+        //Switch back to parent page
+        driver.switchTo().defaultContent();
+ 
+        //Switch to first iFrame on the page
+        driver.switchTo().frame(0);
+ 
+        //Switch to second iFrame in that frame
+        driver.switchTo().frame(1);
+ 
+        //Get heading text in iFrame
+        WebElement frameHeading2 = driver.findElement(By.cssSelector("div.content"));
+        System.out.println(frameHeading2.getText());
+ 
+        //Close browser
+        driver.close();
+    }
+}
+
+
+--Activity12-3
+Activity12_3.java
+
+public class Activity12_3 {
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Actions builder = new Actions(driver);
+        
+        //Open browser
+        driver.get("https://www.training-support.net/selenium/popups");
+        
+        //Find Sign in button
+        WebElement button = driver.findElement(By.xpath("//button[contains(@class, 'orange')]"));
+        
+        //Hover over button
+        builder.moveToElement(button).pause(Duration.ofSeconds(1)).build().perform();
+        String tooltipText = button.getAttribute("data-tooltip");
+        System.out.println("Tooltip text: " + tooltipText);
+        
+        //Click on the button
+        button.click();
+        
+        //Wait for modal to appear
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInModal")));
+        
+        //Find username and pasword and fill in the details
+        driver.findElement(By.id("username")).sendKeys("admin");
+        driver.findElement(By.id("password")).sendKeys("password");
+        driver.findElement(By.xpath("//button[text()='Log in']")).click();
+        
+        //Read the login message
+        String message = driver.findElement(By.id("action-confirmation")).getText();
+        System.out.println(message);
+        
+        //Close browser
+        driver.close();
+    }
+}
+
+
+--Activity13-1
+Activity13_1.java
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+ 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+ 
+public class Activity13_1 {
+	public static void main(String[] args) throws IOException, CsvException {
+		//Load CSV file
+        CSVReader reader = new CSVReader(new FileReader("src/test/java/tests/sample.csv"));
+ 
+        //Load content into list
+        List<String[]> list = reader.readAll();
+        System.out.println("Total number of rows are: " + list.size());
+ 
+        //Create Iterator reference
+        Iterator<String[]> itr = list.iterator();
+ 
+        //Iterate all values
+        while(itr.hasNext()) {
+            String[] str = itr.next();
+ 
+            System.out.print("Values are: ");
+            for(int i=0;i<str.length;i++) {
+                System.out.print(" " + str[i]);
+            }
+            System.out.println(" ");
+        }
+        
+        reader.close();
+	}
+}
+
+--Activity13-2a
+Activity13_2a.java
+
+
+	
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+ 
+public class Activity13_2a {
+    //Write Excel
+    public void writeExcel(String filePath) throws IOException {
+        //Blank workbook
+        XSSFWorkbook workbook = new XSSFWorkbook();
+ 
+        //Create a blank sheet
+        XSSFSheet sheet = workbook.createSheet("Sheet1");
+ 
+        //This data needs to be written (Object[])
+        List<String[]> data = new ArrayList<String[]>();
+        String[] heading = {"ID", "First Name", "Last Name", "Email", "Ph.No."};
+        String[] row1 = {"1", "Satvik", "Shah", "satshah@example.com", "4537829158"};
+        String[] row2 = {"2", "Avinash", "Kati", "avinashK@example.com", "4892184058"};
+        String[] row3 = {"3", "Lahri", "Rath", "lahri.rath@example.com", "4528727830"};
+        
+        data.add(heading);
+        data.add(row1);
+        data.add(row2);
+        data.add(row3);
+ 
+        //Iterate over data and write to sheet
+        int rownum = 0;
+        for (String[] rowData : data) {
+            //Creates a new row in the sheet
+            Row row = sheet.createRow(rownum++);
+            int cellnum = 0;
+            for (String cellData : rowData) {
+                //Creates a cell in the next column of that row
+                Cell cell = row.createCell(cellnum++);
+                cell.setCellValue(cellData);
+            }
+        }
+        try {
+            //this Writes to the workbook
+            FileOutputStream out = new FileOutputStream(new File(filePath));
+            workbook.write(out);
+            out.close();
+            workbook.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    //Read Excel
+    public void readExcel(String filePath) {
+        try {
+            FileInputStream file = new FileInputStream(filePath);
+ 
+            //Create Workbook instance holding reference to Excel file
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+ 
+            //Get first sheet from the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+ 
+            //Iterate through each rows one by one
+            Iterator<Row> rowIterator = sheet.iterator();
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                //For each row, iterate through all the columns
+                Iterator<Cell> cellIterator = row.cellIterator();
+ 
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    //Check the cell type and format accordingly
+                    switch (cell.getCellType()) {
+                    case NUMERIC: 
+                        System.out.print(cell.getNumericCellValue() + " \t ");
+                        break;
+                    case STRING: 
+                        System.out.print(cell.getStringCellValue() + " \t ");
+                        break;
+                    default:
+                        System.out.println("Invalid value");
+                        break;
+                    }
+                }
+                System.out.println("");
+            }
+            file.close();
+            workbook.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    public static void main(String args[]) throws IOException {
+        //Prepare the path of excel file
+        String filePath = "src/test/resources/sample.xlsx";
+ 
+        //Create an object of current class
+        Activity14_2 objExcelFile = new Activity14_2();
+ 
+        //Write the file using file name, sheet name and the data to be filled
+        objExcelFile.writeExcel(filePath);
+        
+        //Call read file method of the class to read data
+        objExcelFile.readExcel(filePath);
+    }
+}
+
+--Activity13-2b
+Activity13_2b.java
+
+	
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+public class Activity13_2b {
+ 
+    public static void main(String[] args) {
+        WebDriver driver = new FirefoxDriver();
+        
+        //Prepare the path of excel file
+        String filePath = "src/resources/sample.xlsx";
+ 
+        //Create an object of current class
+        Activity14_2b srcExcel = new Activity14_2b();
+        
+        //Call read file method of the class to read data
+        List<List<String>> data = srcExcel.readExcel(filePath);
+        List<String> row;
+        
+        //Open the browser
+        driver.get("https://www.training-support.net/selenium/simple-form");
+        
+        //Find the page title and print it
+        String pageTitle = driver.getTitle();
+        System.out.println("Page title is: " + pageTitle);
+        
+        //Get row 1 data
+        row = data.get(3);
+            
+        //Find the input fields and enter text
+        WebElement firstName = driver.findElement(By.xpath("//input[@id = 'firstName']"));
+        WebElement lastName = driver.findElement(By.xpath("//input[@id = 'lastName']"));
+        
+        firstName.sendKeys(row.get(1));
+        lastName.sendKeys(row.get(2));
+        
+        //Enter the email
+        driver.findElement(By.xpath("//input[@id = 'email']")).sendKeys(row.get(3));
+        
+        //Enter the contact number
+        driver.findElement(By.xpath("//input[@id = 'number']")).sendKeys(row.get(4));
+        
+        //Click Submit
+        driver.findElement(By.xpath("//input[contains(@class, 'green')]")).click();
+        
+        //Switch to alert
+        Alert message = driver.switchTo().alert();
+        
+        //Get alert message
+        System.out.println("Alert message: " + message.getText());
+        message.accept();
+ 
+        //Close the browser
+        driver.close();
+    }
+    
+    public List<List<String>> readExcel(String filePath) {
+        List<List<String>> data = new ArrayList<List<String>>();
+        try {
+            FileInputStream file = new FileInputStream(filePath);
+ 
+            //Create Workbook instance holding reference to Excel file
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+ 
+            //Get first sheet from the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+ 
+            //Iterate through each rows one by one
+            Iterator<Row> rowIterator = sheet.iterator();
+            while(rowIterator.hasNext()) {
+                //Temp variable
+                List<String> rowData = new ArrayList<String>();
+                Row row = rowIterator.next();
+                
+                //For each row, iterate through all the columns
+                Iterator<Cell> cellIterator = row.cellIterator();
+ 
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    if(row.getLastCellNum() == 5) {
+                        //Store row data
+                        rowData.add(cell.getStringCellValue());
+                    }
+                }
+                //Store row data in List
+                data.add(rowData);
+            }
+            file.close();
+            workbook.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+}
+
